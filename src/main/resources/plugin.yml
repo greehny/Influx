@@ -1,0 +1,6 @@
+name: Influx
+version: '${project.version}'
+main: com.github.greehny.Influx.InfluxMain
+api-version: 1.16
+authors: [ Greehn ]
+website: https://github.com/greehny
