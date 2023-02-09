@@ -43,7 +43,7 @@
                             <relocations>
                                 <relocation>
                                     <pattern>com.jeff_media.customblockdata</pattern>
-                                    <shadedPattern>com.github.greehny.Influx.CustomBlocks</shadedPattern>
+                                    <shadedPattern>com.github.greehny.Influx.customblocks</shadedPattern>
                                 </relocation>
                             </relocations>
                         </configuration>

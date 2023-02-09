@@ -4,6 +4,7 @@ import com.github.greehny.Influx.InfluxMain;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
+import org.bukkit.entity.Item;
 import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
@@ -34,6 +35,10 @@ public class CustomItems {
 
     public ItemStack getPick(){
         return createCustomItem(Material.IRON_PICKAXE, "influx-pick", "&fIron Pickaxe", "&7Just an ordinary Iron Pick.");
+    }
+
+    public ItemStack getLunarite(){
+        return createCustomItem(Material.GOLD_ORE, "influx-raw-lunarite", "&eLunarite", "&7An ore dropped from up above. What could it be doing up there!?");
     }
 
 }
