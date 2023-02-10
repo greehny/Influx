@@ -31,7 +31,7 @@ public class WorldCustomBlock implements Listener {
 
         if(!container.has(key, PersistentDataType.STRING)){return;}
 
-        influxMain.getCustomConfig().set("nodes.ore." + block.getLocation().toString() + ".oretype", "lunarite-ore");
+        influxMain.getCustomConfig().set("nodes.ore." + block.getX() + "-" + block.getY() + "-" + block.getZ() + ".oretype", "lunarite-ore");
         influxMain.saveCustomConfig();
     }
 }
