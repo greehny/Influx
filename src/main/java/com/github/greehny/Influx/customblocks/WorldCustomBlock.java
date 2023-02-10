@@ -14,6 +14,10 @@ import org.bukkit.persistence.PersistentDataType;
 import javax.naming.Name;
 
 public class WorldCustomBlock implements Listener {
+    private InfluxMain influxMain;
+    public WorldCustomBlock(InfluxMain influxMain) {
+        this.influxMain = influxMain;
+    }
 
     @EventHandler
     public void setPlacedToLunarite(BlockPlaceEvent event){
@@ -25,9 +29,9 @@ public class WorldCustomBlock implements Listener {
         NamespacedKey key = new NamespacedKey(InfluxMain.getPlugin(InfluxMain.class), "influx-raw-lunarite");
         PersistentDataContainer container = meta.getPersistentDataContainer();
 
-        if(container.has(key, PersistentDataType.STRING)){
-            CustomBlocks customBlocks = new CustomBlocks();
-            customBlocks.createCustomBlock(block, "influx-ore-lunarite");
-        }
+        if(!container.has(key, PersistentDataType.STRING)){return;}
+
+        influxMain.getCustomConfig().set("nodes.ore." + block.getLocation().toString() + ".oretype", "lunarite-ore");
+        influxMain.saveCustomConfig();
     }
 }

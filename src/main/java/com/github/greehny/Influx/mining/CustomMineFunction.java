@@ -17,6 +17,10 @@ import org.bukkit.persistence.PersistentDataContainer;
 import org.bukkit.persistence.PersistentDataType;
 
 public class CustomMineFunction implements Listener {
+    private InfluxMain influxMain;
+    public CustomMineFunction(InfluxMain influxMain) {
+        this.influxMain = influxMain;
+    }
 
     CustomItems customItems = new CustomItems();
     @EventHandler
@@ -32,9 +36,10 @@ public class CustomMineFunction implements Listener {
         if (itemHand.getType() != Material.WOODEN_PICKAXE || itemHand.getType() != Material.STONE_PICKAXE || itemHand.getType() != Material.IRON_PICKAXE){
             return;
         }
-        NamespacedKey key = new NamespacedKey(InfluxMain.getPlugin(InfluxMain.class), "influx-ore-lunarite");
-        PersistentDataContainer customBlockData = new CustomBlockData(block, InfluxMain.getPlugin(InfluxMain.class));
-        if (!customBlockData.has(key, PersistentDataType.STRING)){ return; }
+
+        if (!influxMain.getCustomConfig().contains("nodes.ore." + block.getLocation().toString())) { return; }
+        if (!influxMain.getCustomConfig().getString("nodes.ore." + block.getLocation().toString() + ".oretype").equals("lunarite-ore")) {return;}
+
         block.getWorld().dropItemNaturally(block.getLocation(), customItems.getLunarite());
         block.setType(Material.AIR);
     }
