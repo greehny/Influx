@@ -39,6 +39,8 @@ public class CustomMineFunction implements Listener {
 
         if (!influxMain.getCustomConfig().contains("nodes.ore." + block.getLocation().toString())) { return; }
         if (!influxMain.getCustomConfig().getString("nodes.ore." + block.getLocation().toString() + ".oretype").equals("lunarite-ore")) {return;}
+        influxMain.getCustomConfig().set("nodes.ore." + block.getLocation().toString(), null);
+        influxMain.saveCustomConfig();
 
         block.getWorld().dropItemNaturally(block.getLocation(), customItems.getLunarite());
         block.setType(Material.AIR);
